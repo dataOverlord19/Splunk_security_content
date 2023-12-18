@@ -9,7 +9,7 @@ description: This search establishes, on a per-hour basis, the average and the s
   deviation of the number of outbound connections blocked in your VPC flow logs by
   each source IP address (IP address of your EC2 instances). Also recorded is the
   number of data points for each source IP. This table outputs to a lookup file to
-  allow the detection search to operate quickly.
+  allow the detection search to operate quickly. 
 search: '`cloudwatchlogs_vpcflow` action=blocked (src_ip=10.0.0.0/8 OR src_ip=172.16.0.0/12
   OR src_ip=192.168.0.0/16) ( dest_ip!=10.0.0.0/8 AND dest_ip!=172.16.0.0/12 AND dest_ip!=192.168.0.0/16)
   | bucket _time span=1h | stats count as numberOfBlockedConnections by _time, src_ip
@@ -38,5 +38,5 @@ tags:
   - _time
   - action
   - src_ip
-  - dest_ip
+  - destination_ip
   security_domain: network
